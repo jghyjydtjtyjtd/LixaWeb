@@ -1,122 +1,163 @@
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f8ff;
-    color: #222;
+/* =========================
+   LixaWeb - style.css
+   ========================= */
+
+/* RESET + FONT */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: "Poppins", sans-serif;
+  background:#f4f8ff; /* couleur d'avant */
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-.center { text-align: center; }
+/* NAVBAR (sticky + animation) */
+.navbar{
+  background:#ffffff;
+  padding:16px 24px;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  align-items:center;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  position:sticky;
+  top:0;
+  z-index:100;
+  transform: translateY(-12px);
+  opacity:0;
+  animation: navEnter 0.6s ease-out forwards;
+}
+.navbar a{
+  color:#1a73e8;
+  text-decoration:none;
+  font-weight:600;
+  padding:6px 8px;
+  position:relative;
+}
+.navbar a:hover{ color:#155ec3; }
+.navbar a::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:0;
+  height:3px;
+  background:#1a73e8;
+  transition:width .28s;
+}
+.navbar a:hover::after{ width:60%; }
 
-/* NAVBAR */
-.navbar {
-    background: white;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    opacity: 0;
-    animation: navSlide 0.7s forwards;
+@keyframes navEnter{
+  to { transform:translateY(0); opacity:1; }
 }
 
-.navbar a {
-    text-decoration: none;
-    color: #1a73e8;
-    font-weight: bold;
-    transition: 0.3s;
+/* HERO (applied on each page header) */
+.hero{
+  text-align:center;
+  padding:56px 20px;
+  background: #ffffff;
+  border-bottom:4px solid #1a73e8;
 }
-.navbar a:hover { color: #155ec3; }
+.hero h1{ font-size:34px; margin-bottom:8px; }
+.hero p{ color:#4b5866; }
 
-/* HEADER */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background: white;
-    border-bottom: 3px solid #1a73e8;
+/* CARDS SECTION (used on accueil & services) */
+.cards-section{
+  width:100%;
+  max-width:1100px;
+  margin:36px auto;
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  flex-wrap:wrap;
+  padding:0 20px 30px;
+}
+.card{
+  background:#ffffff;
+  width:280px;
+  padding:22px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(26, 115, 232, 0.06);
+  border-top:5px solid #1a73e8;
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+  color:#222;
+  text-decoration:none; /* if card is a link wrapper */
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 18px 42px rgba(26,115,232,0.12);
+}
+.card h2{ margin-bottom:10px; color:#1a73e8; }
+.card p{ color:#4b5866; line-height:1.45; }
+
+/* Service images in services page */
+.service-img{ width:100%; border-radius:8px; margin-bottom:12px; }
+
+/* MENU - two columns (cards used as columns) */
+.menu-grid{
+  width:100%;
+  max-width:900px;
+  margin:28px auto;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:26px;
+  padding:0 20px 40px;
+}
+.menu-grid .card{ width:100%; }
+
+/* CONTACT buttons (improved & spaced) */
+.contact-buttons{
+  display:flex;
+  justify-content:center;
+  gap:22px;
+  flex-wrap:wrap;
+  padding:34px 20px 60px;
+}
+.contact-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-width:180px;
+  padding:14px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  color:white;
+  font-weight:700;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.contact-btn:active{ transform:scale(.99); }
+.contact-btn.call{ background:#0077ff; }
+.contact-btn.whatsapp{ background:#25D366; color:#043a10; }
+.contact-btn.sms{ background:#ff9800; color:#5a2e00; }
+.contact-btn:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.14); }
+
+/* small screens adjustments */
+@media (max-width:880px){
+  .cards-section{ gap:18px; }
+  .card{ width:46%; }
+  .menu-grid{ grid-template-columns: 1fr; }
+  .contact-btn{ min-width:140px; padding:12px; }
+}
+@media (max-width:520px){
+  .card{ width:100%; }
+  .navbar{ gap:18px; padding:12px; }
 }
 
-/* CARDS SECTION */
-.cards-section {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-    padding: 40px 20px;
+/* Animations: fade + slide up (applied via classes) */
+.fade-in{ opacity:0; transform:translateY(18px); animation: fadeUp .7s ease-out forwards; }
+.fade-in.delay{ animation-delay:.18s; }
+.fade-in.delay2{ animation-delay:.36s; }
+
+@keyframes fadeUp{
+  to{ opacity:1; transform:translateY(0); }
 }
 
-/* CARDS */
-.card {
-    background: white;
-    padding: 25px;
-    width: 260px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    border-top: 4px solid #1a73e8;
-}
-
-.service-img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-/* MENU 2 COLONNES */
-.menu-two-columns {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-/* CONTACT BUTTONS */
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 40px;
-}
-
-.contact-btn {
-    display: block;
-    background: white;
-    padding: 18px 35px;
-    border-radius: 10px;
-    font-size: 18px;
-    text-decoration: none;
-    color: #1a73e8;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: 0.25s;
-}
-
-.contact-btn:hover {
-    transform: scale(1.05);
-}
-
-/* ANIMATIONS */
-.fade-in { opacity: 0; animation: fadeIn 1s forwards; }
-.delay { animation-delay: .3s; }
-.delay2 { animation-delay: .6s; }
-
-@keyframes fadeIn { to { opacity: 1; } }
-
-@keyframes navSlide {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    color: #555;
-}
-.card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
+/* footer */
+footer{ text-align:center; color:#666; padding:28px 12px; }

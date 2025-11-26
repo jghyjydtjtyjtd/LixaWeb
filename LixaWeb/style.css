@@ -1,0 +1,122 @@
+/* GLOBAL */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f8ff;
+    color: #222;
+}
+
+.center { text-align: center; }
+
+/* NAVBAR */
+.navbar {
+    background: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    opacity: 0;
+    animation: navSlide 0.7s forwards;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.navbar a:hover { color: #155ec3; }
+
+/* HEADER */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-bottom: 3px solid #1a73e8;
+}
+
+/* CARDS SECTION */
+.cards-section {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+}
+
+/* CARDS */
+.card {
+    background: white;
+    padding: 25px;
+    width: 260px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-top: 4px solid #1a73e8;
+}
+
+.service-img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* MENU 2 COLONNES */
+.menu-two-columns {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* CONTACT BUTTONS */
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px;
+}
+
+.contact-btn {
+    display: block;
+    background: white;
+    padding: 18px 35px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #1a73e8;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: 0.25s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ANIMATIONS */
+.fade-in { opacity: 0; animation: fadeIn 1s forwards; }
+.delay { animation-delay: .3s; }
+.delay2 { animation-delay: .6s; }
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+@keyframes navSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #555;
+}
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
